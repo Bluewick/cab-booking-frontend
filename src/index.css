@@ -1,112 +1,527 @@
+@import "tailwindcss";
 
-/* :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+@layer base {
+  :root, html.light {
+    color-scheme: light;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+    --color-background: #ffffff;
+    --color-on-background: #09090b;
+    --color-surface-dim: #f4f4f5;
+    --color-surface: #ffffff;
+    --color-surface-bright: #ffffff;
+    --color-surface-low: #ffffff;
+    --color-surface-container: #f4f4f6;
+    --color-surface-high: #eaebee;
+    --color-surface-highest: #e4e4e7;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    --color-on-surface: #09090b;
+    --color-on-surface-variant: #52525b;
+    --color-on-surface-muted: #71717a;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
+    --color-outline: #e4e4e7;
+    --color-outline-variant: #d4d4d8;
+    --color-outline-subtle: rgba(0, 0, 0, 0.08);
+    --color-outline-focus: #09090b;
+
+    --color-primary: #09090b;
+    --color-on-primary: #ffffff;
+    --color-primary-hover: #27272a;
+    --color-primary-container: #f4f4f5;
+
+    --color-secondary: #ffffff;
+    --color-on-secondary: #09090b;
+    --color-secondary-hover: #f4f4f5;
+    --color-secondary-container: #f4f4f5;
+
+    --color-brand: #2563eb;
+    --color-brand-container: #eff6ff;
+    --color-on-brand: #1d4ed8;
+
+    --color-success: #059669;
+    --color-success-container: #ecfdf5;
+    --color-on-success: #047857;
+
+    --color-warning: #d97706;
+    --color-warning-container: #fffbeb;
+    --color-on-warning: #b45309;
+
+    --color-error: #dc2626;
+    --color-error-container: #fef2f2;
+    --color-on-error: #b91c1c;
+  }
+
+  html.dark, html:not(.light) {
+    color-scheme: dark;
+
+    --color-background: #09090b;
+    --color-on-background: #fafafa;
+    --color-surface-dim: #050507;
+    --color-surface: #09090b;
+    --color-surface-bright: #18181b;
+    --color-surface-low: #0f0f12;
+    --color-surface-container: #141418;
+    --color-surface-high: #1c1c21;
+    --color-surface-highest: #27272a;
+
+    --color-on-surface: #fafafa;
+    --color-on-surface-variant: #a1a1aa;
+    --color-on-surface-muted: #71717a;
+
+    --color-outline: #27272a;
+    --color-outline-variant: #3f3f46;
+    --color-outline-subtle: rgba(255, 255, 255, 0.08);
+    --color-outline-focus: #fafafa;
+
+    --color-primary: #fafafa;
+    --color-on-primary: #09090b;
+    --color-primary-hover: #e4e4e7;
+    --color-primary-container: #27272a;
+
+    --color-secondary: #18181b;
+    --color-on-secondary: #fafafa;
+    --color-secondary-hover: #27272a;
+    --color-secondary-container: #27272a;
+
+    --color-brand: #3b82f6;
+    --color-brand-container: #172554;
+    --color-on-brand: #60a5fa;
+
+    --color-success: #10b981;
+    --color-success-container: #052e16;
+    --color-on-success: #34d399;
+
+    --color-warning: #f59e0b;
+    --color-warning-container: #451a03;
+    --color-on-warning: #fbbf24;
+
+    --color-error: #ef4444;
+    --color-error-container: #450a0a;
+    --color-on-error: #f87171;
+  }
+
+  * {
+    border-color: #27272a;
+    box-sizing: border-box;
+  }
+
+  html.light * {
+    border-color: #e4e4e7;
+  }
+
+  html {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  body {
+    background-color: #09090b;
+    color: #fafafa;
+    overflow-x: hidden;
+    transition: background-color 200ms ease, color 200ms ease;
+  }
+
+  html.light body {
+    background-color: #ffffff;
+    color: #09090b;
+  }
+
+  /* Custom Sleek Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #09090b;
+  }
+  html.light ::-webkit-scrollbar-track {
+    background: #f4f4f5;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #27272a;
+    border-radius: 9999px;
+  }
+  html.light ::-webkit-scrollbar-thumb {
+    background: #d4d4d8;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3f3f46;
+  }
+  html.light ::-webkit-scrollbar-thumb:hover {
+    background: #a1a1aa;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+/* ==========================================================================
+   LIGHT THEME ADAPTATION FOR OBSIDIAN GEIST TOKENS
+   Remaps hardcoded Obsidian Geist dark tokens to clean, high-contrast alabaster
+   ========================================================================== */
+
+/* 1. Base Canvas & Surface Hierarchy */
+html.light .bg-\[\#09090B\],
+html.light .bg-\[\#09090b\],
+html.light .bg-black {
+  background-color: #ffffff !important;
+}
+
+html.light .bg-\[\#050507\],
+html.light .bg-\[\#050507\] {
+  background-color: #f4f4f5 !important;
+}
+
+html.light .bg-\[\#09090B\]\/90,
+html.light .bg-\[\#09090b\]\/90 {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+}
+
+html.light .bg-\[\#09090B\]\/95,
+html.light .bg-\[\#09090b\]\/95 {
+  background-color: rgba(255, 255, 255, 0.96) !important;
+}
+
+html.light .bg-\[\#09090B\]\/80,
+html.light .bg-\[\#09090b\]\/80 {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+html.light .bg-\[\#0F0F12\],
+html.light .bg-\[\#0f0f12\] {
+  background-color: #ffffff !important;
+}
+
+html.light .bg-\[\#141418\],
+html.light .bg-\[\#141418\] {
+  background-color: #f4f4f6 !important;
+}
+
+html.light .bg-\[\#141418\]\/95,
+html.light .bg-\[\#141418\]\/90 {
+  background-color: rgba(255, 255, 255, 0.98) !important;
+}
+
+html.light .bg-\[\#18181B\],
+html.light .bg-\[\#18181b\] {
+  background-color: #ececee !important;
+}
+
+html.light .bg-\[\#1C1C21\],
+html.light .bg-\[\#1c1c21\] {
+  background-color: #e4e4e7 !important;
+}
+
+html.light .bg-\[\#27272A\],
+html.light .bg-\[\#27272a\] {
+  background-color: #d4d4d8 !important;
+}
+
+/* 2. Text & Typography */
+html.light .text-\[\#FAFAFA\],
+html.light .text-\[\#fafafa\],
+html.light .text-white {
+  color: #09090b !important;
+}
+
+html.light .text-\[\#A1A1AA\],
+html.light .text-\[\#a1a1aa\] {
+  color: #52525b !important;
+}
+
+html.light .text-\[\#71717A\],
+html.light .text-\[\#71717a\] {
+  color: #71717a !important;
+}
+
+/* 3. Hairline Micro-Borders */
+html.light .border-\[\#27272A\],
+html.light .border-\[\#27272a\],
+html.light .border-\[\#27272A\]\/80,
+html.light .border-\[\#27272A\]\/70,
+html.light .border-\[\#27272A\]\/50 {
+  border-color: #e4e4e7 !important;
+}
+
+html.light .border-\[\#3F3F46\],
+html.light .border-\[\#3f3f46\] {
+  border-color: #d4d4d8 !important;
+}
+
+/* 4. Interactive Hover & Focus States */
+html.light .hover\:bg-\[\#1C1C21\]:hover,
+html.light .hover\:bg-\[\#1c1c21\]:hover,
+html.light .hover\:bg-\[\#141418\]:hover,
+html.light .hover\:bg-\[\#18181B\]:hover {
+  background-color: #ececee !important;
+}
+
+html.light .hover\:text-\[\#FAFAFA\]:hover,
+html.light .hover\:text-\[\#fafafa\]:hover {
+  color: #09090b !important;
+}
+
+html.light .hover\:border-\[\#3F3F46\]:hover,
+html.light .hover\:border-\[\#3f3f46\]:hover {
+  border-color: #d4d4d8 !important;
+}
+
+/* 5. Semantic Color Preservations (Status Tags & Accents) */
+html.light .text-\[\#34D399\] {
+  color: #059669 !important;
+}
+html.light .text-\[\#60A5FA\] {
+  color: #2563eb !important;
+}
+html.light .text-\[\#FBBF24\] {
+  color: #d97706 !important;
+}
+html.light .text-\[\#F87171\] {
+  color: #dc2626 !important;
+}
+
+html.light .bg-\[\#052E16\],
+html.light .bg-\[\#052E16\]\/90 {
+  background-color: #ecfdf5 !important;
+}
+html.light .bg-\[\#172554\],
+html.light .bg-\[\#172554\]\/90 {
+  background-color: #eff6ff !important;
+}
+html.light .bg-\[\#451A03\],
+html.light .bg-\[\#451A03\]\/90 {
+  background-color: #fffbeb !important;
+}
+html.light .bg-\[\#450A0A\],
+html.light .bg-\[\#450A0A\]\/90,
+html.light .bg-\[\#450A0A\]\/30 {
+  background-color: #fef2f2 !important;
+}
+
+/* 6. Signature Primary Action Inversion (Vercel / Geist Stark Monochromatic) */
+html.light button.bg-\[\#FAFAFA\],
+html.light .bg-\[\#FAFAFA\].text-\[\#09090B\] {
+  background-color: #09090b !important;
+  color: #ffffff !important;
+}
+html.light button.bg-\[\#FAFAFA\]:hover,
+html.light .bg-\[\#FAFAFA\].text-\[\#09090B\]:hover {
+  background-color: #27272a !important;
+  color: #ffffff !important;
+}
+
+/* 7. Glassmorphism in Light Mode */
+html.light .glass-panel {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+}
+
+html.light .glass-panel-heavy {
+  background: rgba(255, 255, 255, 0.96) !important;
+  backdrop-filter: blur(20px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(190%) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 16px 40px -4px rgba(0, 0, 0, 0.1) !important;
+}
+
+html.light .specular-border {
+  border: 1px solid #e4e4e7 !important;
+  box-shadow: inset 0 1px 0 0 #ffffff, 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .specular-border-interactive {
+  border: 1px solid #e4e4e7 !important;
+  box-shadow: inset 0 1px 0 0 #ffffff, 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+}
+html.light .specular-border-interactive:hover {
+  border-color: #d4d4d8 !important;
+}
+
+html.light .hero-radial-glow {
+  background-image: radial-gradient(100% 60% at 50% 0%, rgba(0, 0, 0, 0.03) 0%, transparent 100%) !important;
+}
+
+html.light .brand-radial-glow {
+  background-image: radial-gradient(100% 60% at 50% 0%, rgba(37, 99, 235, 0.08) 0%, transparent 100%) !important;
+}
+
+html.light .metallic-text {
+  background: linear-gradient(180deg, #09090b 0%, #52525b 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* 8. Light Mode Map Tiles & Overlays */
+html.light .leaflet-dark-mode .leaflet-tile-pane {
+  filter: none !important;
+}
+html.light .carto-dark-streets .leaflet-tile {
+  filter: none !important;
+}
+html.light .carto-high-contrast-labels .leaflet-tile {
+  filter: contrast(1.1) brightness(0.95) !important;
+}
+
+/* 9. Soft Light Mode Shadows (Replacing harsh dark drop shadows) */
+html.light [class*="shadow-\[0_4px_20px_rgba(0,0,0,0.6)\]"] {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03) !important;
+}
+
+html.light [class*="shadow-\[inset_0_1px_0_0_rgba(255,255,255,0.06),0_4px_12px_rgba(0,0,0,0.4)\]"],
+html.light [class*="shadow-\[inset_0_1px_0_0_rgba(255,255,255,0.08),0_8px_24px_rgba(0,0,0,0.5)\]"],
+html.light [class*="shadow-\[inset_0_1px_0_0_rgba(255,255,255,0.1),0_12px_28px_rgba(0,0,0,0.6)\]"] {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.02) !important;
+}
+
+html.light [class*="shadow-\[0_16px_40px_rgba(0,0,0,0.8)\]"],
+html.light [class*="shadow-\[0_16px_40px_rgba(0,0,0,0.7)\]"],
+html.light [class*="shadow-\[0_20px_48px_rgba(0,0,0,0.85)\]"],
+html.light [class*="shadow-\[0_20px_45px_rgba(0,0,0,0.85)\]"],
+html.light [class*="shadow-\[0_16px_36px_rgba(0,0,0,0.8)\]"],
+html.light [class*="shadow-\[0_16px_36px_rgba(0,0,0,0.85)\]"],
+html.light [class*="shadow-\[0_24px_60px_rgba(0,0,0,0.8)\]"] {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03) !important;
+}
+
+html.light [class*="shadow-\[0_8px_32px_rgba(0,0,0,0.6)\]"],
+html.light [class*="shadow-\[0_8px_24px_rgba(0,0,0,0.6)\]"],
+html.light [class*="shadow-\[0_8px_24px_rgba(0,0,0,0.5)\]"],
+html.light [class*="shadow-\[0_8px_20px_rgba(0,0,0,0.6)\]"] {
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02) !important;
+}
+
+html.light [class*="shadow-\[0_4px_16px_rgba(0,0,0,0.4)\]"],
+html.light [class*="shadow-\[0_4px_12px_rgba(0,0,0,0.4)\]"],
+html.light [class*="shadow-\[0_4px_10px_rgba(0,0,0,0.85)\]"] {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.03) !important;
+}
+
+html.light [class*="shadow-\[inset_0_1px_2px_rgba(0,0,0,0.4)\]"],
+html.light [class*="shadow-\[inset_0_2px_4px_rgba(0,0,0,0.6)\]"] {
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+}
+
+html.light [class*="shadow-\[inset_0_1px_0_0_rgba(255,255,255"] {
+  box-shadow: none !important;
+}
+
+/* Modals & bottom sheets */
+html.light [class*="shadow-\[inset_0_1px_0_0_rgba(255,255,255,0.1),0_24px_48px_-8px_rgba(0,0,0,0.85)\]"] {
+  box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.1), 0 10px 20px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light [class*="shadow-\[0_12px_32px_rgba(0,0,0,0.85)\]"] {
+  box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* General shadow softening in Light Mode */
+html.light .shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.03) !important;
+}
+html.light .shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -2px rgba(0, 0, 0, 0.02) !important;
+}
+html.light .shadow-sm {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03) !important;
+}
+
+
+/* Base Utility Classes (Obsidian Geist) */
+.specular-border {
+  border: 1px solid #27272a;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+}
+
+.specular-border-interactive {
+  border: 1px solid #27272a;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+  transition: all 150ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.specular-border-interactive:hover {
+  border-color: #3f3f46;
+}
+
+.glass-panel {
+  background: rgba(15, 15, 18, 0.78);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08), 0 16px 36px -6px rgba(0, 0, 0, 0.65);
+}
+
+.glass-panel-heavy {
+  background: rgba(9, 9, 11, 0.88);
+  backdrop-filter: blur(20px) saturate(190%);
+  -webkit-backdrop-filter: blur(20px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-radial-glow {
+  background-image: radial-gradient(100% 60% at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+}
+
+.brand-radial-glow {
+  background-image: radial-gradient(100% 60% at 50% 0%, rgba(59, 130, 246, 0.12) 0%, transparent 100%);
+}
+
+.metallic-text {
+  background: linear-gradient(180deg, #FFFFFF 0%, #A1A1AA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Live Pulse Halos */
+@keyframes neonPing {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
   }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
   }
 }
 
-body {
-  margin: 0;
+.pulse-neon-success {
+  animation: neonPing 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+@keyframes radarSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+
+.animate-radar {
+  animation: radarSpin 4s linear infinite;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+/* Obsidian Dark Filter for Map Tiles (fallback OSM) */
+.leaflet-dark-mode .leaflet-tile-pane {
+  filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.75);
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
-} */
+/* Stacking Context Isolation for Leaflet Maps */
+.leaflet-container {
+  isolation: isolate;
+  z-index: 0;
+}
+
+/* High-Contrast Crisp Labels for Carto Dark Maps */
+.carto-high-contrast-labels .leaflet-tile {
+  filter: brightness(2.8) contrast(1.7) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.95)) !important;
+}
+
+/* Subtle contrast boost for dark street surfaces */
+.carto-dark-streets .leaflet-tile {
+  filter: contrast(1.16) brightness(1.1);
+}

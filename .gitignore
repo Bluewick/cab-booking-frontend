@@ -14,6 +14,8 @@ dist-ssr
 .agents/*
 .agent/*
 DESIGN.md
+.env
+docs/*
 
 # Editor directories and files
 .vscode/*
