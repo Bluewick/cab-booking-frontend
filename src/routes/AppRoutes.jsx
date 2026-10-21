@@ -25,6 +25,7 @@ import DriverActiveTripPage from '../pages/driver/DriverActiveTripPage';
 import AdminSOSPage from '../pages/admin/AdminSOSPage';
 import AdminHealthPage from '../pages/admin/AdminHealthPage';
 import AdminSupportPage from '../pages/admin/AdminSupportPage';
+import AdminDriversPage from '../pages/admin/AdminDriversPage';
 
 export default function AppRoutes() {
   return (
@@ -119,6 +120,22 @@ export default function AppRoutes() {
       />
 
       {/* Admin / Dispatcher Protected Routes (role === 'admin') */}
+      <Route
+        path="/admin/drivers"
+        element={
+          <ProtectedRoute allowedRoles={['admin']}>
+            <AdminDriversPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/driver-verification"
+        element={
+          <ProtectedRoute allowedRoles={['admin']}>
+            <AdminDriversPage />
+          </ProtectedRoute>
+        }
+      />
       <Route
         path="/admin/sos"
         element={

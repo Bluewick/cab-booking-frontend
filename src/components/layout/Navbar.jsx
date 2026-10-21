@@ -15,6 +15,7 @@ import {
   ShieldCheck,
   Briefcase,
   Activity,
+  UserCheck,
 } from 'lucide-react';
 import Button from '../common/Button';
 import ThemeToggle from '../common/ThemeToggle';
@@ -183,6 +184,12 @@ export default function Navbar({
           {/* 3. Admin Navigation */}
           {isAdmin && (
             <>
+              <NavLink to="/admin/drivers" className={navLinkClass}>
+                <span className="flex items-center gap-1.5">
+                  <UserCheck className="size-3.5 text-[#34D399]" />
+                  Drivers
+                </span>
+              </NavLink>
               <NavLink to="/admin/sos" className={navLinkClass}>
                 <span className="flex items-center gap-1.5">
                   <ShieldAlert className="size-3.5 text-[#F87171]" />
@@ -332,14 +339,24 @@ export default function Navbar({
                     )}
 
                     {isAdmin && (
-                      <Link
-                        to="/admin/sos"
-                        onClick={() => setDropdownOpen(false)}
-                        className="flex items-center gap-2.5 px-3 py-2 rounded-[8px] text-xs font-medium text-[#A1A1AA] hover:text-[#FAFAFA] hover:bg-[#1C1C21] transition-colors"
-                      >
-                        <ShieldAlert className="size-4 text-[#F87171]" />
-                        <span>Emergency SOS Dispatch</span>
-                      </Link>
+                      <>
+                        <Link
+                          to="/admin/drivers"
+                          onClick={() => setDropdownOpen(false)}
+                          className="flex items-center gap-2.5 px-3 py-2 rounded-[8px] text-xs font-medium text-[#A1A1AA] hover:text-[#FAFAFA] hover:bg-[#1C1C21] transition-colors"
+                        >
+                          <UserCheck className="size-4 text-[#34D399]" />
+                          <span>Driver Fleet & Verification</span>
+                        </Link>
+                        <Link
+                          to="/admin/sos"
+                          onClick={() => setDropdownOpen(false)}
+                          className="flex items-center gap-2.5 px-3 py-2 rounded-[8px] text-xs font-medium text-[#A1A1AA] hover:text-[#FAFAFA] hover:bg-[#1C1C21] transition-colors"
+                        >
+                          <ShieldAlert className="size-4 text-[#F87171]" />
+                          <span>Emergency SOS Dispatch</span>
+                        </Link>
+                      </>
                     )}
 
                     <Link
@@ -480,6 +497,13 @@ export default function Navbar({
           {/* 3. Admin Mobile Navigation */}
           {isAdmin && (
             <>
+              <NavLink
+                to="/admin/drivers"
+                onClick={() => setMobileMenuOpen(false)}
+                className={navLinkClass}
+              >
+                Driver Fleet & Verification
+              </NavLink>
               <NavLink
                 to="/admin/sos"
                 onClick={() => setMobileMenuOpen(false)}
