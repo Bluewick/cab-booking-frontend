@@ -723,7 +723,7 @@ export default function AdminDriversPage() {
                                 loadingText="Verifying..."
                                 icon={CheckCircle2}
                                 onClick={() => handleVerify(driverId, true)}
-                                className="bg-[#10B981] hover:bg-[#059669] text-white text-[11px] px-2.5"
+                                className="bg-[#10B981] hover:bg-[#059669] text-[11px] px-2.5"
                               >
                                 Approve
                               </Button>
