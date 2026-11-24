@@ -11,10 +11,11 @@
   <img alt="Vite 8" src="https://img.shields.io/badge/Vite-8.3-646CFF?style=flat-square&logo=vite&logoColor=white">
   <img alt="Tailwind CSS v4" src="https://img.shields.io/badge/Tailwind_CSS-v4.3-0F172A?style=flat-square&logo=tailwindcss&logoColor=38BDF8">
   <img alt="Socket.IO v4" src="https://img.shields.io/badge/Socket.IO-v4.8-010101?style=flat-square&logo=socketdotio&logoColor=white">
-  <img alt="Vercel Ready" src="https://img.shields.io/badge/Deploy-Vercel-000000?style=flat-square&logo=vercel&logoColor=white">
+  <a href="https://cab-booking-frontend-jade.vercel.app/"><img alt="Live Demo on Vercel" src="https://img.shields.io/badge/Live_Demo-Vercel-000000?style=flat-square&logo=vercel&logoColor=white"></a>
 </p>
 
 <p>
+  <a href="https://cab-booking-frontend-jade.vercel.app/"><strong>Live Demo</strong></a> ·
   <a href="#features">Features</a> ·
   <a href="#architecture">Architecture</a> ·
   <a href="#universal-map-engine">Map Engine</a> ·
@@ -349,6 +350,8 @@ cab-booking-frontend/
 
 <a id="deployment"></a>
 ## Deployment
+
+- **Live Production App:** [https://cab-booking-frontend-jade.vercel.app/](https://cab-booking-frontend-jade.vercel.app/)
 
 This repository includes [`vercel.json`](./vercel.json) configured with SPA fallback rewrites (`/(.*) → /index.html`) and immutable cache headers (`max-age=31536000`) for hashed `/assets/*` bundles.
 
